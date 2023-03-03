@@ -23,7 +23,6 @@ public class FileReader {
             LOGGER.severe("missing something");
         }
         String[] pairs = stri.split("\n");
-        System.out.println(pairs[1]);
         String[] newpr = new String[pairs.length];
         for (int i = 0; i < pairs.length; i++) {
             newpr[i] = (pairs[i].split(": "))[1].trim();
