@@ -2,21 +2,22 @@ package com.epam.mjc.io;
 import java.util.logging.Logger;
 
 import java.io.*;
-import java.util.Arrays;
 
 
 public class FileReader {
 
-    private  final Logger LOGGER = Logger.getLogger(getClass().getName());
+    private final Logger LOGGER = Logger.getLogger(getClass().getName());
 
     public Profile getDataFromFile(File file) {
         String stri = "";
+        StringBuilder bld = new StringBuilder();
         try (FileInputStream newfile = new FileInputStream(file)) {
             int ch;
 
             while ((ch = newfile.read()) != -1) {
-                stri += (char)ch;
+                bld.append((char)ch);
             }
+            stri = bld.toString();
         } catch (FileNotFoundException e) {
             LOGGER.severe("Not found");
         } catch (IOException e) {
