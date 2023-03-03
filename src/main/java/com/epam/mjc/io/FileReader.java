@@ -1,4 +1,5 @@
 package com.epam.mjc.io;
+import java.util.logging.Logger;
 
 import java.io.*;
 import java.util.Arrays;
@@ -6,6 +7,7 @@ import java.util.Arrays;
 
 public class FileReader {
 
+    private  final Logger LOGGER = Logger.getLogger(getClass().getName());
 
     public Profile getDataFromFile(File file) {
         String stri = "";
@@ -16,9 +18,9 @@ public class FileReader {
                 stri += (char)ch;
             }
         } catch (FileNotFoundException e) {
-            System.out.println("Not fount");
+            LOGGER.severe("Not found");
         } catch (IOException e) {
-            System.out.println("missing something");
+            LOGGER.severe("missing something");
         }
         String[] pairs = stri.split("\n");
         System.out.println(pairs[1]);
@@ -26,8 +28,6 @@ public class FileReader {
         for (int i = 0; i < pairs.length; i++) {
             newpr[i] = (pairs[i].split(": "))[1].trim();
         }
-        String num = newpr[1];
-
 
         return  new Profile(newpr[0], Integer.parseInt(newpr[1]), newpr[2], Long.parseLong(newpr[3]));
     }
